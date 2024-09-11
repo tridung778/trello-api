@@ -4,9 +4,9 @@
  * "A bit of fragrance clings to the hand that gives flowers!"
  */
 {
-  "compilerOptions": {
-    "paths": {
-      "~/*": ["./src/*"],
-    },
-  }
+  "presets": ["@babel/preset-env"],
+  "plugins": [
+    ["@babel/transform-runtime"],
+    ["module-resolver", { "alias": { "~": "./src" } }]
+  ]
 }
