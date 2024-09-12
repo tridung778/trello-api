@@ -9,8 +9,7 @@ const createNew = async (req, res, next) => {
 
   try {
     await correctCondition.validateAsync(req.body, { abortEarly: false });
-    // next()
-    res.status(StatusCodes.CREATED).json({ mes: "create a board" });
+    next();
   } catch (error) {
     res
       .status(StatusCodes.UNPROCESSABLE_ENTITY)
