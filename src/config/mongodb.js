@@ -16,7 +16,6 @@ const mongoClientInstance = new MongoClient(MONGODB_URL, {
 
 export const CONNECT_DB = async () => {
   await mongoClientInstance.connect();
-
   trelloDatabaseInstance = mongoClientInstance.db(DATABASE_NAME);
 };
 
@@ -26,6 +25,5 @@ export const CLOSE_DB = async () => {
 
 export const GET_DB = () => {
   if (!trelloDatabaseInstance) throw new Error("Must connect database first!");
-
   return trelloDatabaseInstance;
 };
