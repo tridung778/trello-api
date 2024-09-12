@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-catch */
 import Joi from "joi";
+import { ObjectId } from "mongodb";
 import { GET_DB } from "~/config/mongodb";
 import { OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE } from "~/utils/validators";
 
@@ -19,9 +20,19 @@ const BOARD_COLLECTION_SCHEMA = Joi.object({
   _destroy: Joi.boolean().default(false),
 });
 
+const validateBeforeCreate = async (data) => {
+  return await BOARD_COLLECTION_SCHEMA.validateAsync(data, {
+    abortEarly: false,
+  });
+};
+
 const createNew = async (data) => {
   try {
-    return await GET_DB().collection(BOARD_COLLECTION_NAME).insertOne(data);
+    const validData = await validateBeforeCreate(data);
+    const createBoard = await GET_DB()
+      .collection(BOARD_COLLECTION_NAME)
+      .insertOne(validData);
+    return createBoard;
   } catch (error) {
     throw new Error(error);
   }
@@ -29,9 +40,10 @@ const createNew = async (data) => {
 
 const findOneById = async (id) => {
   try {
-    return await GET_DB()
+    const findNewBoard = await GET_DB()
       .collection(BOARD_COLLECTION_NAME)
-      .findOne({ _id: id });
+      .findOne({ _id: new ObjectId(id) });
+    return findNewBoard;
   } catch (error) {
     throw new Error(error);
   }
