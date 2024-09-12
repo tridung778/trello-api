@@ -8,7 +8,7 @@ Router.route("/")
     res.status(StatusCodes.OK).json({ mes: "get list board" });
   })
   .post((req, res) => {
-    res.status(StatusCodes.CREATED).json({ mes: "create list board" });
+    res.status(StatusCodes.CREATED).json({ mes: "create a board" });
   });
 
 export const boradRoutes = Router;
