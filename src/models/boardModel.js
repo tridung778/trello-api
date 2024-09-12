@@ -82,7 +82,7 @@ const getDetails = async (id) => {
         },
       ])
       .toArray();
-    return findNewBoard[0] || {};
+    return findNewBoard[0] || null;
   } catch (error) {
     throw new Error(error);
   }
