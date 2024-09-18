@@ -42,7 +42,22 @@ const getDetails = async (boardId) => {
   }
 };
 
+const update = async (boardId, resBody) => {
+  try {
+    const updateData = {
+      ...resBody,
+      updatedAt: Date.now(),
+    };
+    const board = await boardModel.update(boardId, updateData);
+
+    return board;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const boardService = {
   createNew,
   getDetails,
+  update,
 };
