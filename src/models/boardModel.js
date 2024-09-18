@@ -5,7 +5,7 @@ import { GET_DB } from "~/config/mongodb";
 import { BOARD_TYPES } from "~/utils/constants";
 import { OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE } from "~/utils/validators";
 import { columnModel } from "./columnModel";
-import { cardModel } from "./CardModel";
+import { cardModel } from "./cardModel";
 
 const BOARD_COLLECTION_NAME = "boards";
 const BOARD_COLLECTION_SCHEMA = Joi.object({
